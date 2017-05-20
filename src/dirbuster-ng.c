@@ -150,7 +150,7 @@ void* dbng_engine(void* queue_arg)
     response = curl_easy_perform(curl);
     curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, &http_code);
 
-    if (http_code == 200 || http_code == 403) {
+    if (http_code && http_code != 404) {
       output("FOUND %s (response code %d)\n",trim(url),http_code);
       outputToFile("%s (HTTP code %d)\n",trim(url),http_code);
     }  
